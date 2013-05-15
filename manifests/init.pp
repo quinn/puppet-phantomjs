@@ -6,7 +6,7 @@ class phantomjs($version = "1.5.0" ) {
         $platid = "x86"
     }
 
-    $filename = "phantomjs-${version}-linux-${platid}-dynamic.tar.gz"
+    $filename = "phantomjs-${version}-linux-${platid}-symbols.tar.bz2"
     $phantom_src_path = "/usr/local/src/phantomjs-${version}/"
     $phantom_bin_path = "/opt/phantomjs/"
 
@@ -22,7 +22,7 @@ class phantomjs($version = "1.5.0" ) {
     
     exec { "extract-${filename}" :
         path => '/usr/bin:/usr/sbin:/bin',
-        command     => "tar xvfz ${filename} -C /opt/",
+        command     => "tar xvfj ${filename} -C /opt/",
         creates     => "/opt/phantomjs/",
         cwd         => $phantom_src_path,
         require     => Exec["download-${filename}"],
